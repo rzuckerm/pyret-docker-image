@@ -2,3 +2,4 @@
 /.meta*
 /init.sh
 /*.jarr
+/.pyret
