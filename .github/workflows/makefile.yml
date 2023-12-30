@@ -14,8 +14,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Build docker images
+    - name: Build docker muli-arch images
+      run: make buildx
+
+    - name: Build docker regular images
       run: make build
 
-    - name: Test docker images
+    - name: Test docker regular images
       run: make test
