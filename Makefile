@@ -11,7 +11,7 @@ PLATFORMS := linux/amd64 linux/arm64
 COMMA := ,
 SPACE := $(NOTHING) $(NOTHING)
 
-BUILDX := docker buildx build --builder=mybuilder --platform $(subst $(SPACE),$(COMMA),$(PLATFORMS)) -t $(DOCKER_TAG_PREFIX)$(DOCKER_TAG_SUFFIX) -f Dockerfile .
+BUILDX := docker buildx build --builder=$(BUILDER) --platform $(subst $(SPACE),$(COMMA),$(PLATFORMS)) -t $(DOCKER_TAG_PREFIX)$(DOCKER_TAG_SUFFIX) -f Dockerfile .
 
 .PHONY: help
 help:
@@ -47,7 +47,7 @@ $(META_BUILDX_TARGET): $(META_CREATE_BUILDER_TARGET) Dockerfile
 create-builder: $(META_CREATE_BUILDER_TARGET)
 $(META_CREATE_BUILDER_TARGET):
 	@echo "*** Creating builder if does not exist ***"
-	@if ! (docker buildx ls | grep -sq mybuilder); then docker buildx create --name $(BUILDER); fi
+	@if ! (docker buildx ls | grep -sq $(BUILDER)); then docker buildx create --name $(BUILDER); fi
 	touch $@
 	@echo ""
 
