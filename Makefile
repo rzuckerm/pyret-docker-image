@@ -68,7 +68,7 @@ publish: $(META_BUILD_TARGET)
 	@echo ""
 
 .PHONY: publishx
-publishx:
+publishx: $(META_CREATE_BUILDER_TARGET)
 	@echo "*** Publishing multi-arch $(DOCKER_TAG_PREFIX)$(DOCKER_TAG_SUFFIX) ***"
 	docker rmi -f $(DOCKER_TAG_PREFIX)$(DOCKER_TAG_SUFFIX)
 	$(BUILDX) --push
