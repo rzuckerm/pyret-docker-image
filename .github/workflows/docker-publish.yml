@@ -40,5 +40,5 @@ jobs:
       - name: Test images
         run: make test DOCKER_TAG_SUFFIX=-${{steps.tag.outputs.tag}}
 
-      - name: Publish images
-        run: make publish DOCKER_TAG_SUFFIX=-${{steps.tag.outputs.tag}}
+      - name: Publish multi-arch images
+        run: make publishx DOCKER_TAG_SUFFIX=-${{steps.tag.outputs.tag}}
