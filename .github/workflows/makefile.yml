@@ -20,5 +20,5 @@ jobs:
     - name: Build docker regular images
       run: make build
 
-    - name: Test docker images
+    - name: Test docker regular images
       run: make test

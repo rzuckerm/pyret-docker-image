@@ -34,11 +34,12 @@ $(META_BUILD_TARGET): Dockerfile
 	@echo ""
 
 .PHONY: buildx
-buildx: $(META_CREATE_BUILDER_TARGET) $(META_BUILDX_TARGET) Dockerfile
+buildx: $(META_BUILDX_TARGET)
+$(META_BUILDX_TARGET): $(META_CREATE_BUILDER_TARGET) Dockerfile
 	@echo "*** Building $(DOCKER_TAG_PREFIX)$(DOCKER_TAG_SUFFIX) ***"
 	docker rmi -f $(DOCKER_TAG_PREFIX)$(DOCKER_TAG_SUFFIX)
 	$(BUILDX)
-	touch $(META_BUILDX_TARGET)
+	touch $@
 	rm -f $(META_BUILD_TARGET)
 	@echo ""
 
